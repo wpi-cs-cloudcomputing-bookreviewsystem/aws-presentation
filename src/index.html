@@ -15,8 +15,10 @@
 
     <!-- Custom styles for this template -->
     <link href="css/3-col-portfolio.css" rel="stylesheet">
-    <script src="js/index.js"></script>
+    <link href="css/customed.css" rel="stylesheet">
     <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+    
     <!-- <script>
       alert("runing!")
     </script> -->
@@ -27,7 +29,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Book Review System</a>
+        <a class="navbar-brand" href="index.html">Book Review System</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,6 +44,9 @@
             <li class="nav-item">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript: myProfileClicked()">My Profile</a>
+            </li>
             <li class="nav-item active">
               <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
@@ -51,12 +56,37 @@
               <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
+        </div>
+
+        
+        <!-- The Modal -->
+        <div id="loginModal" class="modal">
+              <form class="modal-content animate" action="#">
+
+                <div class="container">
+                  <div>
+                    <br>
+                    <center><h2>Login</h2></center>
+                  </div>
+                  <label for="uname"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="uname" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="psw" required>
+                    
+                  <button type="submit">Login</button>
+                  <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                  </label>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="closeLoginModal()" class="cancelbtn">Cancel</button>
+                  <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+              </form>
         </div>
       </div>
     </nav>
@@ -179,50 +209,6 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script>
-      
-        function listAllBooks() {
-
-            var demoUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/books"
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function() {
-                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                    
-                    var responseString = JSON.parse(xmlHttp.responseText);
-                    var response = JSON.parse(responseString)
-                    var books = JSON.parse(response.content)
-
-                    console.log(books)
-                    for (i = 0; i < books.length; i++) {
-                        book = books[i]
-
-                        let bookTitleId = "book_" + i + "_title"
-                        let bookTitleElement = document.getElementById(bookTitleId);
-                        bookTitleElement.innerHTML = book.title
-                        bookTitleElement.href = demoUrl + "/" + book.ISBN
-
-                        let bookDescriptionId = "book_" + i + "_description"
-                        let bookDescriptionElement = document.getElementById(bookDescriptionId);
-                        bookDescriptionElement.innerHTML = book.description
-
-
-                        let bookImageId = "book_" + i + "_image"
-                        let bookImageElement = document.getElementById(bookImageId);
-                        bookImageElement.src = book.imageUrl
-                        bookImageElement.height = 420
-
-                        let bookHref = "book_" + i + "_href"
-                        document.getElementById(bookHref).href = "bookReview.html?isbn=" + book.ISBN
-                    }
-                }
-            };
-            xmlHttp.open("GET", demoUrl, true);
-            xmlHttp.send(null);
-        }
-
-
-
-    </script>
 
   </body>
 
