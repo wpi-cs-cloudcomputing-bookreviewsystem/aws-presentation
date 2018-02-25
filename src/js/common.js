@@ -1,15 +1,7 @@
 
 let loginURL = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/user/login"
 let registerURL = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/user/register"
-
-window.onclick = function(event) {	
-    if (event.target == loginModal) {
-        document.getElementById('loginModal').style.display = "none";
-    }
-    if (event.target == registerModal) {
-        document.getElementById('registerModal').style.display = "none";
-    }
-}
+let registerToAppURL = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/user/registertoapp"
 
 function showLoginModal() {
     document.getElementById('loginModal').style.display = "block";
@@ -17,6 +9,7 @@ function showLoginModal() {
 
 function closeLoginModal() {
     document.getElementById('loginModal').style.display = "none";
+    
 }
 
 function showRegisterModal() {
@@ -27,6 +20,15 @@ function closeRegisterModal() {
     document.getElementById('registerModal').style.display = "none";
 }
 
+function cancelLoginClicked() {
+    closeLoginModal()
+    window.location.replace("index.html");
+}
+
+function cancelRegisterClicked() {
+    closeRegisterModal()
+    window.location.replace("index.html");
+}
 
 function loginLogoutClicked() {
     if (sessionStorage.user == null) {
@@ -60,22 +62,25 @@ function doLoginRequest(email, password) {
 
             var responseString = JSON.parse(xmlHttp.responseText);
             var responseUserInfo = JSON.parse(responseString)
-            console.log(responseUserInfo)
+            
             if (responseUserInfo.status != "SUCCESS") {
                 alert("Login Failed")
                 return
             }
 
             var AWSLoginResponseMessage = JSON.parse(responseUserInfo.content)
+            console.log(AWSLoginResponseMessage.idToken)
             let user = {
                 "email": email,
                 "accessToken": AWSLoginResponseMessage.accessToken,
-                "refreshToken": AWSLoginResponseMessage.refreshToken
+                "refreshToken": AWSLoginResponseMessage.refreshToken,
+                "idToken": AWSLoginResponseMessage.idToken
             }
-            sessionStorage.setItem("user", user)
+            sessionStorage.setItem("user", JSON.stringify(user))
             document.getElementById('loginModal').style.display = "none";
             document.getElementById('registerModal').style.display = "none";
             document.getElementById("loginLogout").innerHTML = "Logout"
+            window.location.replace("index.html");
         }
     };
     xmlHttp.open("POST", loginURL, true);
@@ -107,7 +112,20 @@ function registerClicked() {
                 alert("Register Failed")
                 return
             }
-            doLoginRequest(emailInput, passwordInput)
+            xmlHttp.onreadystatechange = function() {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    var responseString = JSON.parse(xmlHttp.responseText);
+                    var responseUserInfo = JSON.parse(responseString);
+                    console.log(responseUserInfo)
+                    if (responseUserInfo.status != "SUCCESS") {
+                        alert("Register Failed")
+                        return
+                    }
+                     doLoginRequest(emailInput, passwordInput)
+                }
+            }
+            xmlHttp.open("POST", registerToAppURL, true);
+            xmlHttp.send(JSON.stringify(newUser));       
         }
     };
     xmlHttp.open("POST", registerURL, true);
