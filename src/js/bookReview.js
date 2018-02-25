@@ -1,5 +1,11 @@
 
 
+function loadPage() {
+    LoadPageDefault()
+    loadBookByISBN()
+}
+
+
 function loadBookByISBN() {
     
     let url = new URL(window.location.href)
@@ -55,5 +61,12 @@ function showReviewerDetails() {
     alert("reviewerName is selected!")
 }
 
-
+function LoadPageDefault() {
+    if (sessionStorage.user == null) {
+        document.getElementById("loginLogout").innerHTML = "Login";
+    }
+    else {
+        document.getElementById("loginLogout").innerHTML = "Logout";
+    }
+}
 

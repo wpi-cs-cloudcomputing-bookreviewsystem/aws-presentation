@@ -24,7 +24,7 @@
     </script> -->
   </head>
 
-  <body onload="listAllBooks()">
+  <body onload="loadPage()">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -45,37 +45,35 @@
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="javascript: myProfileClicked()">My Profile</a>
+              <a class="nav-link" href="javascript: loginLogoutClicked()" id="loginLogout">Login</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" href="index.html">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="javascript: myProfileClicked()">My Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="about.html">About</a>
             </li>
           </ul>
         </div>
-
-        
         <!-- The Modal -->
         <div id="loginModal" class="modal">
-              <form class="modal-content animate" action="#">
+              <form class="modal-content animate" action="javascript: loginClicked()">
 
                 <div class="container">
                   <div>
                     <br>
                     <center><h2>Login</h2></center>
                   </div>
-                  <label for="uname"><b>Username</b></label>
-                  <input type="text" placeholder="Enter Username" name="uname" required>
+                  <label for="uname"><b>Email</b></label>
+                  <input type="text" placeholder="Enter Email" name="email" id="loginEmail" required>
 
                   <label for="psw"><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" name="psw" required>
+                  <input type="password" placeholder="Enter Password" name="password" id="loginPassword" required>
                     
                   <button type="submit">Login</button>
                   <label>
@@ -83,14 +81,43 @@
                   </label>
                 </div>
                 <div class="container" style="background-color:#f1f1f1">
-                  <button type="button" onclick="closeLoginModal()" class="cancelbtn">Cancel</button>
-                  <span class="psw">Forgot <a href="#">password?</a></span>
+                  <button type="button" onclick="cancelLoginClicked()" class="cancelbtn">Cancel</button>
+                  <span class="psw">Not registered? <a href="javascript: registerModalClicked()">register</a></span>
+                </div>
+              </form>
+        </div>
+        <div id="registerModal" class="modal">
+              <form class="modal-content animate" action="javascript: registerClicked()">
+
+                <div class="container">
+                  <div>
+                    <br>
+                    <center><h2>Register</h2></center>
+                  </div>
+
+                  <label for="uname"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="username" id="registerUsername" required>
+
+                  <label for="email"><b>Email</b></label>
+                  <input type="text" placeholder="Enter Email" name="email" id="registerEmail" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="password" id="registerPassword" required>
+
+                  <label for="repeat_psw"><b>Re-Enter Password</b></label>
+                  <input type="password" placeholder="Re-Enter Password" name="repeat_password" id="registerRepeatPassword" required>
+                    
+                  <button type="submit">Register</button>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="cancelRegisterClicked()" class="cancelbtn">Cancel</button>
+                  <span class="psw">Already registered? <a href="javascript: loginLogoutClicked()">login</a></span>
                 </div>
               </form>
         </div>
       </div>
     </nav>
-
+    <br><br>
     <!-- Page Content -->
     <div class="container">
 

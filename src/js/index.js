@@ -1,6 +1,10 @@
 
-function listAllBooks() {
+function loadPage() {
+    LoadPageDefault()
+    listAllBooks()
+}
 
+function listAllBooks() {
     var demoUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/books"
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
@@ -39,6 +43,13 @@ function listAllBooks() {
 }
 
 
-
+function LoadPageDefault() {
+    if (sessionStorage.user == null) {
+        document.getElementById("loginLogout").innerHTML = "Login";
+    }
+    else {
+        document.getElementById("loginLogout").innerHTML = "Logout";
+    }
+}
 
 
