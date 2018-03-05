@@ -80,7 +80,7 @@ function doLoginRequest(email, password) {
             document.getElementById('loginModal').style.display = "none";
             document.getElementById('registerModal').style.display = "none";
             document.getElementById("loginLogout").innerHTML = "Logout"
-            window.location.replace("index.html");
+          //  window.location.replace("index.html");
         }
     };
     xmlHttp.open("POST", loginURL, true);
