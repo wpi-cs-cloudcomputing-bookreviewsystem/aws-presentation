@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Book Review System</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link href="css/blog-post.css" rel="stylesheet">
+    <link href="css/customed.css" rel="stylesheet">
+    <script src="js/common.js"></script>
+    <script src="js/addBook.js"></script>
+  </head>
+
+  <body onload="loadPage()">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Book Review System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+ <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <input type="text" class="form-control" placeholder="Search for...">
+            </li>
+            <li class="nav-item active">
+              <button class="btn btn-secondary" type="button" onclick="searchBook()">Go!</button>
+            </li>
+            <li class="nav-item">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript: loginLogoutClicked()" id="loginLogout">Login</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript: myProfileClicked()">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+          </ul>
+        </div>
+        <!-- The Modal -->
+        <div id="loginModal" class="modal">
+              <form class="modal-content animate" action="javascript: loginClicked()">
+
+                <div class="container">
+                  <div>
+                    <br>
+                    <center><h2>Login</h2></center>
+                  </div>
+                  <label for="uname"><b>Email</b></label>
+                  <input type="text" placeholder="Enter Email" name="email" id="loginEmail" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="password" id="loginPassword" required>
+                    
+                  <button type="submit">Login</button>
+                  <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                  </label>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="cancelLoginClicked()" class="cancelbtn">Cancel</button>
+                  <span class="psw">Not registered? <a href="javascript: registerModalClicked()">register</a></span>
+                </div>
+              </form>
+        </div>
+            <div id="registerModal" class="modal">
+              <form class="modal-content animate" action="javascript: registerClicked()">
+
+                <div class="container">
+                  <div>
+                    <br>
+                    <center><h2>Register</h2></center>
+                  </div>
+
+                  <label for="uname"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="username" id="registerUsername" required>
+
+                  <label for="email"><b>Email</b></label>
+                  <input type="text" placeholder="Enter Email" name="email" id="registerEmail" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="password" id="registerPassword" required>
+
+                  <label for="repeat_psw"><b>Re-Enter Password</b></label>
+                  <input type="password" placeholder="Re-Enter Password" name="repeat_password" id="registerRepeatPassword" required>
+                    
+                  <button type="submit">Register</button>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="cancelRegisterClicked()" class="cancelbtn">Cancel</button>
+                  <span class="psw">Already registered? <a href="javascript: loginLogoutClicked()">login</a></span>
+                </div>
+              </form>
+        </div>
+      </div>
+    </nav>
+    <br><br>
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+          <form action="" method="post" class="bootstrap-frm" id="form">
+            <h1>Add New Book
+            </h1>
+            <label>
+              <span>Title :</span>
+              <input id="title" type="text" />
+            </label>
+            <label>
+              <span>Author :</span>
+              <input id="author" type="text" />
+            </label>
+            <label>
+              <span>ISBN :</span>
+              <input id="isbn" type="text"  />
+            </label>
+
+            <label>
+              <span>Image Url :</span>
+              <input id="url" type="url"  />
+            </label>
+
+            <label>
+              <span>Description :</span>
+              <textarea id="description" ></textarea>
+            </label>
+            <label>
+              <span>Genre :</span>
+              <select id="genre">
+              <option value="Science fiction">Science fiction</option>
+              <option value="Drama">Drama</option>
+              </select>
+            </label>
+            <label>
+              <span>Leave a review :</span>
+              <textarea id="review" ></textarea>
+            </label>
+            <label>
+              <span>&nbsp;</span>
+              <input type="button" class="button" value="Submit" onclick="addBook()" />
+            </label>
+
+          </form>
+
+
+        </div>
+
+
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Categories Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Topics</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="profile.html">My Profile</a>
+                    </li>
+                    <li>
+                      <a href="index.html">Recommand</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="inbox.html">Inbox</a>
+                    </li>
+                    <li>
+                      <a href="history.html">My History</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Side Widget</h5>
+            <div class="card-body">
+              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
