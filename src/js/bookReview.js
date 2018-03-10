@@ -38,6 +38,7 @@ function loadBookByISBN() {
                 reviewContent.innerHTML = review.content;
                 let reviewName = document.getElementById("review-name-" + (i - 10 * (page - 1)));
                 reviewName.innerHTML = review.reviewer.username;
+                reviewName.href =  "profile.html?email=" + review.reviewer.email + "&username=" + review.reviewer.username;
                 let reviewThumbUpIcon = document.getElementById("review-thumbup-icon-" + (i - 10 * (page - 1)));
                 reviewThumbUpIcon.setAttribute("class","fa fa-thumbs-o-up");
                 let reviewThumbUp = document.getElementById("review-thumbup-" + (i - 10 * (page - 1)));
@@ -54,7 +55,7 @@ function loadBookByISBN() {
                 li.setAttribute("id", "page-item-" + j);
                 var a = document.createElement("a");
                 a.setAttribute("class", "page-link")
-                a.href =  url + "&page=" + j;
+                a.href =  "bookReview.html?isbn=" + isbn + "&page=" + j;
                 a.innerHTML = j;
                 a.onclick = function () {
                     loadBookByISBN()
@@ -107,7 +108,27 @@ function recommendToFriends() {
 }
 
 function flagReview() {
-    alert("flagReview Clicked!");
+    let url = new URL(window.location.href)
+    let searchParams = new URLSearchParams(url.search);
+    isbn = searchParams.get('isbn')
+    page = searchParams.get('page')
+    if (page == null) page = 1;
+    console.log(isbn)
+    var flagUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/review/";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            var responseString = JSON.parse(xmlHttp.responseText);
+            var response = JSON.parse(responseString)
+            var book = JSON.parse(response.content)
+            console.log(book);
+
+
+
+        }
+    };
+    xmlHttp.open("GET", flagUrl + page, true);
+    xmlHttp.send(null);
 }
 
 function selectPage(pageNumber) {
@@ -182,8 +203,15 @@ function rateBook(rateNumber) {
         xmlHttp.send(JSON.stringify({"score":rateNumber, "email":user.email, "isbn":isbn}));
     }
 }
-
-
+//
+// function otherUserProfileClicked(url) {
+//     if (sessionStorage.user == null) {
+//         showLoginModal()
+//     }
+//     else {
+//         window.location.replace(url);
+//     }
+// }
 
 function LoadPageDefault() {
     if (sessionStorage.user == null) {
