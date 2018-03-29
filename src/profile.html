@@ -127,7 +127,26 @@
           <h2 class="mt-4" id="myUsername"></h2>
           <h2 class="mt-4" id="myEmail"></h2>
           <button type="button" class="btn-info col-lg-2" id="add-friend-button" style="display: none" onclick="addFriend()">Add Friend</button>
+          <form action="" method="post" class="bootstrap-frm" id="message-form"  style="display: none">
+
+            <h1>Send Message
+            </h1>
+            <label>
+              <span>Title :</span>
+              <input id="message-title" type="text" />
+            </label>
+            <label>
+              <span>Message :</span>
+              <textarea id="message-content" ></textarea>
+            </label>
+            <label>
+              <span>&nbsp;</span>
+              <input type="button" class="button" value="Send" onclick="sendMessage()" />
+            </label>
+
+          </form>
         </div>
+
 
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">

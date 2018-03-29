@@ -18,6 +18,7 @@ function loadBookByISBN() {
     var xmlHttp = new XMLHttpRequest();    
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            console.log(xmlHttp.responseText);
             var responseString = JSON.parse(xmlHttp.responseText);
             var response = JSON.parse(responseString)
             var book = JSON.parse(response.content)
@@ -74,9 +75,9 @@ function loadBookByISBN() {
 
 
 function thumbUp(id) {
-    // if(sessionStorage.user == null){
-    //     alert("You should log in at first!");
-    // }else {
+    if(sessionStorage.user == null){
+        alert("You should log in at first!");
+    }else {
         var index = Number(id.substring(20)) + 10 * (page - 1);
         console.log(index);
         console.log(reviews[index]);
@@ -99,8 +100,7 @@ function thumbUp(id) {
         };
         xmlHttp.open("POST", thumbupUrl, true);
         xmlHttp.send(JSON.stringify({"reviewId": reviewId, "num": num}));
-
-    // }
+    }
 }
 
 function recommendToFriends() {

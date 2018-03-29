@@ -58,13 +58,11 @@ function loadOtherUserDetails() {
             document.getElementById("myUsername").innerHTML = "Username: " + userDetail.username;
             document.getElementById("myEmail").innerHTML = "Email: " + userDetail.email;
             console.log(userDetail.isfriend);
-            document.getElementById("add-friend-button").style.display = "inline";
+            document.getElementById("add-friend-button").style.display = "block";
             if (userDetail.isfriend == "true"){
                 document.getElementById("add-friend-button").setAttribute("disabled","disabled");
-                document.getElementById("add-friend-button").innerHTML = "already friend"
-            }else if (userDetail.isfriend == "pending"){
-                document.getElementById("add-friend-button").setAttribute("disabled","disabled");
-                document.getElementById("add-friend-button").innerHTML = "pending";
+                document.getElementById("add-friend-button").innerHTML = "already friend";
+                document.getElementById("message-form").style.display = "block";
             }
         }
     };
@@ -73,7 +71,7 @@ function loadOtherUserDetails() {
 }
 
 function addFriend() {
-    var addFriendUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/profile/addfriend";
+    var addFriendUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/usernetwork/addfriend";
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -90,6 +88,39 @@ function addFriend() {
         }
     };
     xmlHttp.open("POST", addFriendUrl, true);
-    xmlHttp.send(JSON.stringify({"fromEmail":user.email, "toEmail":email}));
+    xmlHttp.send(JSON.stringify({"fromEmail":user.email, "toEmail":email, "title": "ADD_FRIEND_REQUEST"}));
+}
+
+function sendMessage() {
+    var user = JSON.parse(sessionStorage.user);
+    let url = new URL(window.location.href);
+    let searchParams = new URLSearchParams(url.search);
+    email = searchParams.get('email');
+    var sendMessageUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/usernetwork/sentmessage";
+    var xmlHttp = new XMLHttpRequest();
+    var title = "'" +  document.getElementById("message-title").value + "'";
+    if (document.getElementById("message-title").value.length == 0 || document.getElementById("message-content").value.length == 0){
+        alert("All spaces can not be null !");
+        return false;
+    }
+    var content ="'" +  document.getElementById("message-content").value + "'";
+
+
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            var responseString = JSON.parse(xmlHttp.responseText);
+            var response = JSON.parse(responseString);
+            console.log(xmlHttp.responseText);
+            if (response.content == "true"){
+                alert("Message Send successfully !");
+                window.location.reload();
+
+            }else {
+                alert("Error: "+ response.content);
+            }
+        }
+    };
+    xmlHttp.open("POST", sendMessageUrl, true);
+    xmlHttp.send(JSON.stringify({"title":title, "content":content,"fromEmail":user.email, "toEmail":email, "type":"Message"}));
 }
 
