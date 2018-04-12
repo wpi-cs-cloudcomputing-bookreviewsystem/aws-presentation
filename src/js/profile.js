@@ -30,6 +30,7 @@ function loadUserDetails() {
             var response = JSON.parse(responseString)
             console.log(response)
             var userDetail = JSON.parse(response.content)
+            document.getElementById("myProfile").innerText = "My Profile";
             document.getElementById("myUsername").innerHTML = "Username: " + userDetail.username
             document.getElementById("myEmail").innerHTML = "Email: " + userDetail.email
         }
@@ -54,7 +55,8 @@ function loadOtherUserDetails() {
             var responseString = JSON.parse(xmlHttp.responseText);
             console.log(xmlHttp.responseText);
             var response = JSON.parse(responseString)
-            var userDetail = JSON.parse(response.content)
+            var userDetail = JSON.parse(response.content);
+            document.getElementById("myProfile").innerText = "User Profile";
             document.getElementById("myUsername").innerHTML = "Username: " + userDetail.username;
             document.getElementById("myEmail").innerHTML = "Email: " + userDetail.email;
             console.log(userDetail.isfriend);
@@ -71,17 +73,19 @@ function loadOtherUserDetails() {
 }
 
 function addFriend() {
+    document.getElementById("add-friend-button").disabled = true;
     var addFriendUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/usernetwork/addfriend";
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+
             var responseString = JSON.parse(xmlHttp.responseText);
             console.log(xmlHttp.responseText);
             var response = JSON.parse(responseString)
             console.log(response);
             if (response.content == "true"){
                 alert("Adding friend request has been send!");
-                document.getElementById("add-friend-button").style.display = "none";
+                document.getElementById("add-friend-button").disabled = false;
             }else {
                 alert("Error: "+ response.content);
             }

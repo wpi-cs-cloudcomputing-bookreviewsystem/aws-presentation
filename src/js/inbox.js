@@ -96,11 +96,12 @@ function LoadPageDefault() {
 }
 
 function acceptFriend(pmId,email) {
-    console.log("accept");
     var addFriendUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/usernetwork/addfriend";
     var xmlHttp = new XMLHttpRequest();
+    document.getElementById("accept-button").disabled = true;
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            document.getElementById("accept-button").disabled = false;
             var responseString = JSON.parse(xmlHttp.responseText);
             console.log(xmlHttp.responseText);
             var response = JSON.parse(responseString)
@@ -118,9 +119,11 @@ function acceptFriend(pmId,email) {
 }
 
 function declineFriend(pmId, email) {
+    document.getElementById("decline-button").disabled = true;
     var addFriendUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/usernetwork/addfriend";
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
+        document.getElementById("decline-button").disabled = false;
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             var responseString = JSON.parse(xmlHttp.responseText);
             console.log(xmlHttp.responseText);
@@ -139,10 +142,12 @@ function declineFriend(pmId, email) {
 }
 
 function ignoreMessage(pmId) {
+    document.getElementById("ignore-button").setAttribute("disabled",true);
     var ignoreUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/usernetwork/ignorepm";
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            document.getElementById("ignore-button").setAttribute("disabled",false);
             var responseString = JSON.parse(xmlHttp.responseText);
             console.log(xmlHttp.responseText);
             var response = JSON.parse(responseString)
@@ -159,10 +164,12 @@ function ignoreMessage(pmId) {
 }
 
 function readMessage(pmId) {
+    document.getElementById("read-button").disabled = true;
     var ignoreUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/usernetwork/readmessage";
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            document.getElementById("read-button").disabled = false;
             var responseString = JSON.parse(xmlHttp.responseText);
             console.log(xmlHttp.responseText);
             var response = JSON.parse(responseString)

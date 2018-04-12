@@ -26,7 +26,6 @@ function listAllBooks() {
                 let bookTitleId = "book_" + (i - 6 * (page - 1))+ "_title"
                 let bookTitleElement = document.getElementById(bookTitleId);
                 bookTitleElement.innerHTML = book.title
-                //   bookTitleElement.href = demoUrl + "/" + book.ISBN
                 bookTitleElement.href = "bookReview.html?isbn=" + book.ISBN
 
                 let bookDescriptionId = "book_" + (i - 6 * (page - 1)) + "_description"

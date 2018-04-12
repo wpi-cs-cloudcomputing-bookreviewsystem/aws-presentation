@@ -22,12 +22,10 @@ function closeRegisterModal() {
 
 function cancelLoginClicked() {
     closeLoginModal()
-//    window.location.replace("index.html");
 }
 
 function cancelRegisterClicked() {
     closeRegisterModal()
-//    window.location.replace("index.html");
 }
 
 function loginLogoutClicked() {
@@ -80,7 +78,6 @@ function doLoginRequest(email, password) {
             document.getElementById('loginModal').style.display = "none";
             document.getElementById('registerModal').style.display = "none";
             document.getElementById("loginLogout").innerHTML = "Logout"
-          //  window.location.replace("index.html");
             window.location.reload();
         }
     };
@@ -132,81 +129,4 @@ function registerClicked() {
     xmlHttp.open("POST", registerURL, true);
     xmlHttp.send(JSON.stringify(newUser));    
 }
-
-function myProfileClicked() {
-    if (sessionStorage.user == null) {
-        showLoginModal()
-    }
-    else {
-        window.location.replace("profile.html");
-    }
-}
-
-// function searchBook() {
-//     var keyword = document.getElementById("search-keyword").value;
-//     if (keyword.length == 0){
-//         alert("Can not be null !");
-//         return;
-//     }
-//     console.log(keyword);
-//     var searchUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/books/search"
-//     var xmlHttp = new XMLHttpRequest();
-//
-//     let url = new URL(window.location.href)
-//     let searchParams = new URLSearchParams(url.search);
-//     page = searchParams.get('page')
-//
-//
-//     xmlHttp.onreadystatechange = function () {
-//         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-//             console.log(keyword);
-//             var responseString = JSON.parse(xmlHttp.responseText);
-//             var response = JSON.parse(responseString)
-//             books = JSON.parse(response.content)
-//
-//             console.log(books);
-//             if (page == null) page = 1;
-//             for (i = 6 * (page - 1); i < Math.min(6 * page, books.length); i++) {
-//                 book = books[i]
-//                 let bookTitleId = "book_" + (i - 6 * (page - 1))+ "_title"
-//                 let bookTitleElement = document.getElementById(bookTitleId);
-//                 bookTitleElement.innerHTML = book.title
-//                 //   bookTitleElement.href = demoUrl + "/" + book.ISBN
-//                 bookTitleElement.href = "bookReview.html?isbn=" + book.ISBN
-//
-//                 let bookDescriptionId = "book_" + (i - 6 * (page - 1)) + "_description"
-//                 let bookDescriptionElement = document.getElementById(bookDescriptionId);
-//                 bookDescriptionElement.innerHTML = book.description
-//
-//
-//                 let bookImageId = "book_" + (i - 6 * (page - 1)) + "_image"
-//                 let bookImageElement = document.getElementById(bookImageId);
-//                 bookImageElement.src = book.imageUrl
-//                 bookImageElement.height = 420
-//
-//                 let bookHref = "book_" + (i - 6 * (page - 1)) + "_href"
-//                 document.getElementById(bookHref).href = "bookReview.html?isbn=" + book.ISBN
-//             }
-//
-//
-//             var pageArea = document.getElementById("page-area");
-//             for (j = 1; j <= ((books.length - 1) / 6 + 1); j++) {
-//                 let li = document.createElement("li");
-//                 li.setAttribute("class", "page-item");
-//                 li.setAttribute("id", "page-item-" + j);
-//                 let a = document.createElement("a");
-//                 a.setAttribute("class", "page-link")
-//                 a.href = "index.html?page=" + j;
-//                 a.innerHTML = j;
-//                 a.onclick = function () {
-//                     listAllBooks();
-//                 }
-//                 li.appendChild(a);
-//                 pageArea.appendChild(li);
-//             }
-//         }
-//     };
-//     xmlHttp.open("GET", searchUrl + "?keyword=" + keyword, true);
-//     xmlHttp.send(null);
-// }
 

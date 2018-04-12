@@ -21,7 +21,7 @@ function loadBookByISBN() {
             console.log(xmlHttp.responseText);
             var responseString = JSON.parse(xmlHttp.responseText);
             var response = JSON.parse(responseString)
-            var book = JSON.parse(response.content)
+            book = JSON.parse(response.content)
             console.log(book);
             document.getElementById("book_title").innerHTML = book.title;
             document.getElementById("book_author").innerHTML = book.author;
@@ -104,40 +104,34 @@ function thumbUp(id) {
 }
 
 function recommendToFriends() {
-    alert("recommendToFriends Clicked!");
-}
-
-function flagReview() {
-    let url = new URL(window.location.href)
-    let searchParams = new URLSearchParams(url.search);
-    isbn = searchParams.get('isbn')
-    page = searchParams.get('page')
-    if (page == null) page = 1;
-    console.log(isbn)
-    var flagUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/review/";
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            var responseString = JSON.parse(xmlHttp.responseText);
-            var response = JSON.parse(responseString)
-            var book = JSON.parse(response.content)
-            console.log(book);
-
-
-
-        }
-    };
-    xmlHttp.open("GET", flagUrl + page, true);
-    xmlHttp.send(null);
-}
-
-function selectPage(pageNumber) {
-    if (pageNumber == "-1") {
-        alert("more page is selected!");
+    if(sessionStorage.user == null){
+        alert("You should log in at first!");
     }else{
-        alert("page " + pageNumber + " is selected!");
+        let url = new URL(window.location.href);
+        let searchParams = new URLSearchParams(url.search);
+        isbn = searchParams.get('isbn');
+        var user = JSON.parse(sessionStorage.user);
+
+        var recommandUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/books/recommend";
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                var responseString = JSON.parse(xmlHttp.responseText);
+                var response = JSON.parse(responseString);
+                console.log(response);
+                if (response.content == "True"){
+                    alert("You have recommended this book!");
+                }else {
+                    alert("Error: "+ response.content);
+                }
+
+            }
+        };
+        xmlHttp.open("POST", recommandUrl, true);
+        xmlHttp.send(JSON.stringify({"email":user.email, "isbn":isbn, "author":"'"+book.author + "'", "title":"'"+ book.title + "'", "description":"'"+book.description + "'", "imageUrl": "'"+ book.imageUrl+"'"}));
     }
 }
+
 
 function submitNewReview() {
     if(sessionStorage.user == null){
@@ -174,9 +168,6 @@ function submitNewReview() {
     }
 }
 
-function showReviewerDetails() {
-    alert("reviewerName is selected!")
-}
 
 function rateBook(rateNumber) {
     if(sessionStorage.user == null){
@@ -203,15 +194,6 @@ function rateBook(rateNumber) {
         xmlHttp.send(JSON.stringify({"score":rateNumber, "email":user.email, "isbn":isbn}));
     }
 }
-//
-// function otherUserProfileClicked(url) {
-//     if (sessionStorage.user == null) {
-//         showLoginModal()
-//     }
-//     else {
-//         window.location.replace(url);
-//     }
-// }
 
 function LoadPageDefault() {
     if (sessionStorage.user == null) {
