@@ -39,16 +39,12 @@ function addBook() {
                 if (response.content == "true"){
                     alert("Add book successfully !");
                     window.location.replace("index.html");
-
                 }else {
                     alert("Error: "+ response.content);
                 }
             }
         };
         xmlHttp.open("POST", addBookUrl, true);
-        // xmlHttp.setRequestHeader("Authorization", user.idToken);
         xmlHttp.send(JSON.stringify({"title":title, "author":author, "ISBN": isbn, "description":description,
-            "imageUrl":url, "genre":genre, "content":review,"email":user.email}));
-        console.log(JSON.stringify({"title":title, "author":author, "ISBN": isbn, "description":description,
             "imageUrl":url, "genre":genre, "content":review,"email":user.email}));
 }

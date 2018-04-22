@@ -10,8 +10,6 @@ function loadPage() {
         let searchParams = new URLSearchParams(url.search);
         user = JSON.parse(sessionStorage.user);
         otherUserEmail = searchParams.get('email')
-        console.log(user.email);
-        console.log(otherUserEmail);
         if (otherUserEmail == null || user.email == otherUserEmail){
             loadUserDetails();
         }else{
@@ -80,7 +78,6 @@ function addFriend() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 
             var responseString = JSON.parse(xmlHttp.responseText);
-            console.log(xmlHttp.responseText);
             var response = JSON.parse(responseString)
             console.log(response);
             if (response.content == "true"){

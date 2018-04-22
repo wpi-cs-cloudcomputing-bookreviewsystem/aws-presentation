@@ -128,7 +128,6 @@ function declineFriend(pmId, email) {
             var responseString = JSON.parse(xmlHttp.responseText);
             console.log(xmlHttp.responseText);
             var response = JSON.parse(responseString)
-            console.log("decline");
             if (response.content == "true"){
                 alert("Decline Friend Successfully!");
                 window.location.replace("inbox.html");

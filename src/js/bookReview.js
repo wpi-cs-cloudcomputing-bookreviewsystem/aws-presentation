@@ -13,12 +13,10 @@ function loadBookByISBN() {
     isbn = searchParams.get('isbn')
     page = searchParams.get('page')
     if (page == null) page = 1;
-    console.log(isbn) 
     var bookUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/books";
     var xmlHttp = new XMLHttpRequest();    
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            console.log(xmlHttp.responseText);
             var responseString = JSON.parse(xmlHttp.responseText);
             var response = JSON.parse(responseString)
             book = JSON.parse(response.content)
@@ -31,8 +29,6 @@ function loadBookByISBN() {
             document.getElementById("score").innerHTML = "Score: "+ score;
             document.getElementById("score_star").style = "width:"+ score*10 + "%";
             reviews = book.reviews;
-            console.log(reviews);
-            console.log(page);
             for (i = 10 * (page - 1); i < Math.min(10 * page, reviews.length); i++) {
                 review = reviews[i];
                 let reviewContent = document.getElementById("review-" + (i - 10 * (page - 1)));
@@ -79,8 +75,6 @@ function thumbUp(id) {
         alert("You should log in at first!");
     }else {
         var index = Number(id.substring(20)) + 10 * (page - 1);
-        console.log(index);
-        console.log(reviews[index]);
         var reviewId = reviews[index].reviewId;
         var num = reviews[index].thumbUpNumber;
         var thumbupUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/review/thumbup";
@@ -111,7 +105,6 @@ function recommendToFriends() {
         let searchParams = new URLSearchParams(url.search);
         isbn = searchParams.get('isbn');
         var user = JSON.parse(sessionStorage.user);
-
         var recommandUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/books/recommend";
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() {
@@ -141,7 +134,6 @@ function submitNewReview() {
         let searchParams = new URLSearchParams(url.search);
         isbn = searchParams.get('isbn');
         reviewText = document.getElementById("review_text").value;
-        console.log(reviewText);
         var user = JSON.parse(sessionStorage.user);
         var reviewUrl = "https://cejosbrm2g.execute-api.us-east-2.amazonaws.com/test/review";
         var xmlHttp = new XMLHttpRequest();
