@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
     <link href="css/blog-post.css" rel="stylesheet">
-        <link href="css/customed.css" rel="stylesheet">
+    <link href="css/customed.css" rel="stylesheet">
     <script src="js/common.js"></script>
-    <script src="js/history.js"></script>
+    <script src="js/addBook.js"></script>
   </head>
 
   <body onload="loadPage()">
@@ -31,12 +31,6 @@
         </button>
  <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <input type="text" class="form-control" placeholder="Search for...">
-            </li>
-            <li class="nav-item active">
-              <button class="btn btn-secondary" type="button" onclick="searchBook()">Go!</button>
-            </li>
             <li class="nav-item">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </li>
@@ -49,7 +43,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="javascript: myProfileClicked()">My Profile</a>
+              <a class="nav-link" href="profile.html">My Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="about.html">About</a>
@@ -82,7 +76,7 @@
                 </div>
               </form>
         </div>
-        <div id="registerModal" class="modal">
+            <div id="registerModal" class="modal">
               <form class="modal-content animate" action="javascript: registerClicked()">
 
                 <div class="container">
@@ -122,10 +116,53 @@
         <!-- Post Content Column -->
         <div class="col-lg-8">
 
-          <!-- Title -->
-          <h1 class="mt-4" id="book_title">History</h1>
+          <form action="" method="post" class="bootstrap-frm" id="form">
+            <h1>Add New Book
+            </h1>
+            <label>
+              <span>Title :</span>
+              <input id="title" type="text" />
+            </label>
+            <label>
+              <span>Author :</span>
+              <input id="author" type="text" />
+            </label>
+            <label>
+              <span>ISBN :</span>
+              <input id="isbn" type="text"  />
+            </label>
+
+            <label>
+              <span>Image Url :</span>
+              <input id="url" type="url"  />
+            </label>
+
+            <label>
+              <span>Description :</span>
+              <textarea id="description" ></textarea>
+            </label>
+            <label>
+              <span>Genre :</span>
+              <select id="genre">
+              <option value="Science fiction">Science fiction</option>
+              <option value="Drama">Drama</option>
+              </select>
+            </label>
+            <label>
+              <span>Leave a review :</span>
+              <textarea id="review" ></textarea>
+            </label>
+            <label>
+              <span>&nbsp;</span>
+              <input type="button" class="button" value="Submit" onclick="addBook()" />
+            </label>
+
+          </form>
+
 
         </div>
+
+
 
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
@@ -150,20 +187,9 @@
                     <li>
                       <a href="inbox.html">Inbox</a>
                     </li>
-                    <li>
-                      <a href="history.html">My History</a>
-                    </li>
                   </ul>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <!-- Side Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
-            <div class="card-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
             </div>
           </div>
 

@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Book Review System</title>
 
     <!-- Bootstrap core CSS -->
@@ -18,6 +17,7 @@
     <link href="css/customed.css" rel="stylesheet">
     <script src="js/common.js"></script>
     <script src="js/inbox.js"></script>
+
   </head>
 
   <body onload="loadPage()">
@@ -31,12 +31,6 @@
         </button>
  <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <input type="text" class="form-control" placeholder="Search for...">
-            </li>
-            <li class="nav-item active">
-              <button class="btn btn-secondary" type="button" onclick="searchBook()">Go!</button>
-            </li>
             <li class="nav-item">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </li>
@@ -49,7 +43,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="javascript: myProfileClicked()">My Profile</a>
+              <a class="nav-link" href="profile.html">My Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.html">About</a>
@@ -119,15 +113,21 @@
 
       <div class="row">
 
-        <!-- Post Content Column -->
+
         <div class="col-lg-8">
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-comment"></span>
+            <br/>
+            <h3 class="panel-title">
+              Messages</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group" id="message-container">
+            </ul>
 
-          <!-- Title -->
-          <h1 class="mt-4" id="book_title">Inbox</h1>
-
+          </div>
         </div>
 
-        <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
           <!-- Categories Widget -->
@@ -141,7 +141,7 @@
                       <a href="profile.html">My Profile</a>
                     </li>
                     <li>
-                      <a href="index.html">Recommand</a>
+                      <a href="recommend.html">Recommand</a>
                     </li>
                   </ul>
                 </div>
@@ -150,25 +150,13 @@
                     <li>
                       <a href="inbox.html">Inbox</a>
                     </li>
-                    <li>
-                      <a href="history.html">My History</a>
-                    </li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Side Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
-            <div class="card-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-            </div>
-          </div>
-
         </div>
-
       </div>
       <!-- /.row -->
 

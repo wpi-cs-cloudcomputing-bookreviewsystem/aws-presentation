@@ -16,12 +16,11 @@
     <!-- Custom styles for this template -->
     <link href="css/blog-post.css" rel="stylesheet">
     <link href="css/customed.css" rel="stylesheet">
-    <script src="js/common.js"></script>
-    <script src="js/bookReview.js"></script>
+
 
   </head>
 
-  <body onload="loadPage()">
+  <body>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -32,12 +31,7 @@
         </button>
  <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <input type="text" class="form-control" placeholder="Search for...">
-            </li>
-            <li class="nav-item active">
-              <button class="btn btn-secondary" type="button" onclick="searchBook()">Go!</button>
-            </li>
+
             <li class="nav-item">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </li>
@@ -50,7 +44,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="javascript: myProfileClicked()">My Profile</a>
+              <a class="nav-link" href="profile.html">My Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="about.html">About</a>
@@ -116,7 +110,7 @@
     </nav>
     <br><br>
     <!-- Page Content -->
-    <div class="container">
+    <div class="container"  >
 
       <div class="row">
 
@@ -199,132 +193,268 @@
 
 
           <div class="media mb-4">
-            <!--<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-            <div class="media-body" id = "review-1">
+            <div class="media-body">
               <div class="row">
                 <div class="col-lg-7">
-                    <h5 class="mt-0"><a href="javascript: showReviewerDetails()" id = "review-name-1">Reviewer Name One</a></h5>
+                    <h5 class="mt-0" >
+                      <a id = "review-name-0"></a>
+                    </h5>
                 </div>
                 <div class="col-lg-3">
                   <ul class="list-unstyled mb-0">
-                    <li>
-                      <span class="fa fa-thumbs-o-up" style="font-size: 1.2em;" onclick="thumbUp()" />
-                      <span style="font-size: 0.8em;"  id = "review-thumbup-1">12</span>
+                    <li >
+                      <span  style="font-size: 1.2em;" onclick="thumbUp(this.id)" id = "review-thumbup-icon-0"/>
+                      <span style="font-size: 0.8em" id = "review-thumbup-0"></span>
                     </li>
                   </ul>
                 </div>
                 <div class="col-lg-2">
-                    <a href="javascript: flagReview()" id = "review-flag-1"><span class="fa fa-flag-o"/></a>
+                    <a  id = "review-flag-0">
+                      <span  id = "review-flag-icon-0"/>
+                    </a>
                 </div>
               </div>
-              haokan
+              <p id ="review-0" ></p>
+            </div>
+          </div>
+
+          <div class="media mb-4">
+            <div class="media-body">
+              <div class="row">
+                <div class="col-lg-7">
+                  <h5 class="mt-0" >
+                    <a  id = "review-name-1"></a>
+                  </h5>
+                </div>
+                <div class="col-lg-3">
+                  <ul class="list-unstyled mb-0">
+                    <li >
+                      <span  style="font-size: 1.2em;" onclick="thumbUp(this.id)" id = "review-thumbup-icon-1"/>
+                      <span style="font-size: 0.8em" id = "review-thumbup-1"></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-2">
+                  <a  id = "review-flag-1">
+                    <span id = "review-flag-icon-1"/>
+                  </a>
+                </div>
+              </div>
+              <p id ="review-1" ></p>
+            </div>
+          </div>
+
+          <div class="media mb-4">
+            <div class="media-body">
+              <div class="row">
+                <div class="col-lg-7">
+                  <h5 class="mt-0" >
+                    <a  id = "review-name-2"></a>
+                  </h5>
+                </div>
+                <div class="col-lg-3">
+                  <ul class="list-unstyled mb-0">
+                    <li >
+                      <span  style="font-size: 1.2em;" onclick="thumbUp(this.id)" id = "review-thumbup-icon-2"/>
+                      <span style="font-size: 0.8em" id = "review-thumbup-2"></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-2">
+                  <a  id = "review-flag-2">
+                    <span  id = "review-flag-icon-2"/>
+                  </a>
+                </div>
+              </div>
+              <p id ="review-2" ></p>
+            </div>
+          </div>
+
+          <div class="media mb-4">
+            <div class="media-body">
+              <div class="row">
+                <div class="col-lg-7">
+                  <h5 class="mt-0" >
+                    <a  id = "review-name-3"></a>
+                  </h5>
+                </div>
+                <div class="col-lg-3">
+                  <ul class="list-unstyled mb-0">
+                    <li >
+                      <span  style="font-size: 1.2em;" onclick="thumbUp(this.id)" id = "review-thumbup-icon-3"/>
+                      <span style="font-size: 0.8em" id = "review-thumbup-3"></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-2">
+                  <a  id = "review-flag-3">
+                    <span  id = "review-flag-icon-3"/>
+                  </a>
+                </div>
+              </div>
+              <p id ="review-3" ></p>
+            </div>
+          </div>
+
+          <div class="media mb-4">
+            <div class="media-body">
+              <div class="row">
+                <div class="col-lg-7">
+                  <h5 class="mt-0" >
+                    <a id = "review-name-4"></a>
+                  </h5>
+                </div>
+                <div class="col-lg-3">
+                  <ul class="list-unstyled mb-0">
+                    <li >
+                      <span  style="font-size: 1.2em;" onclick="thumbUp(this.id)" id = "review-thumbup-icon-4"/>
+                      <span style="font-size: 0.8em" id = "review-thumbup-4"></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-2">
+                  <a  id = "review-flag-4">
+                    <span id = "review-flag-icon-4"/>
+                  </a>
+                </div>
+              </div>
+              <p id ="review-4" ></p>
+            </div>
+          </div>
+
+          <div class="media mb-4">
+            <div class="media-body">
+              <div class="row">
+                <div class="col-lg-7">
+                  <h5 class="mt-0" >
+                    <a  id = "review-name-5"></a>
+                  </h5>
+                </div>
+                <div class="col-lg-3">
+                  <ul class="list-unstyled mb-0">
+                    <li >
+                      <span style="font-size: 1.2em;" onclick="thumbUp(this.id)" id = "review-thumbup-icon-5"/>
+                      <span style="font-size: 0.8em" id = "review-thumbup-5"></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-2">
+                  <a  id = "review-flag-5">
+                    <span  id = "review-flag-icon-5"/>
+                  </a>
+                </div>
+              </div>
+              <p id ="review-5" ></p>
+            </div>
+          </div>
+
+          <div class="media mb-4">
+            <div class="media-body">
+              <div class="row">
+                <div class="col-lg-7">
+                  <h5 class="mt-0" >
+                    <a  id = "review-name-6"></a>
+                  </h5>
+                </div>
+                <div class="col-lg-3">
+                  <ul class="list-unstyled mb-0">
+                    <li >
+                      <span  style="font-size: 1.2em;" onclick="thumbUp(this.id)" id = "review-thumbup-icon-6"/>
+                      <span style="font-size: 0.8em" id = "review-thumbup-6"></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-2">
+                  <a  id = "review-flag-6">
+                    <span  id = "review-flag-icon-6"/>
+                  </a>
+                </div>
+              </div>
+              <p id ="review-6" ></p>
+            </div>
+          </div>
+
+          <div class="media mb-4">
+            <div class="media-body">
+              <div class="row">
+                <div class="col-lg-7">
+                  <h5 class="mt-0" >
+                    <a  id = "review-name-7"></a>
+                  </h5>
+                </div>
+                <div class="col-lg-3">
+                  <ul class="list-unstyled mb-0">
+                    <li >
+                      <span  style="font-size: 1.2em;" onclick="thumbUp(this.id)" id = "review-thumbup-icon-7"/>
+                      <span style="font-size: 0.8em" id = "review-thumbup-7"></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-2">
+                  <a  id = "review-flag-7">
+                    <span  id = "review-flag-icon-7"/>
+                  </a>
+                </div>
+              </div>
+              <p id ="review-7" ></p>
+            </div>
+          </div>
+
+          <div class="media mb-4" name = "review">
+            <div class="media-body">
+              <div class="row">
+                <div class="col-lg-7">
+                  <h5 class="mt-0" >
+                    <a  id = "review-name-8"></a>
+                  </h5>
+                </div>
+                <div class="col-lg-3">
+                  <ul class="list-unstyled mb-0">
+                    <li >
+                      <span  style="font-size: 1.2em;" onclick="thumbUp(this.id)" id = "review-thumbup-icon-8"/>
+                      <span style="font-size: 0.8em" id = "review-thumbup-8"></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-2">
+                  <a  id = "review-flag-8">
+                    <span  id = "review-flag-icon-8"/>
+                  </a>
+                </div>
+              </div>
+              <p id ="review-8" ></p>
             </div>
           </div>
 
           <div class="media mb-4">
             <!--<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-            <div class="media-body" id = "review-2">
+            <div class="media-body">
               <div class="row">
                 <div class="col-lg-7">
-                  <h5 class="mt-0"><a href="javascript: showReviewerDetails()" id = "review-name-2">Reviewer Name One</a></h5>
+                  <h5 class="mt-0" >
+                    <a  id = "review-name-9"></a>
+                  </h5>
                 </div>
                 <div class="col-lg-3">
                   <ul class="list-unstyled mb-0">
-                    <li>
-                      <span class="fa fa-thumbs-o-up" style="font-size: 1.2em;" onclick="thumbUp()" />
-                      <span style="font-size: 0.8em;"  id = "review-thumbup-2">12</span>
+                    <li >
+                      <span style="font-size: 1.2em;" onclick="thumbUp(this.id)" id = "review-thumbup-icon-9"/>
+                      <span style="font-size: 0.8em" id = "review-thumbup-9"></span>
                     </li>
                   </ul>
                 </div>
                 <div class="col-lg-2">
-                  <a href="javascript: flagReview()" id = "review-flag-2"><span class="fa fa-flag-o"/></a>
+                  <a  id = "review-flag-9">
+                    <span  id = "review-flag-icon-9"/>
+                  </a>
                 </div>
               </div>
-              haokan
+              <p id ="review-9" ></p>
             </div>
           </div>
 
-          <div class="media mb-4">
-            <!--<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-            <div class="media-body" id = "review-3">
-              <div class="row">
-                <div class="col-lg-7">
-                  <h5 class="mt-0"><a href="javascript: showReviewerDetails()" id = "review-name-3">Reviewer Name One</a></h5>
-                </div>
-                <div class="col-lg-3">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <span class="fa fa-thumbs-o-up" style="font-size: 1.2em;" onclick="thumbUp()" />
-                      <span style="font-size: 0.8em;"  id = "review-thumbup-3">12</span>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-2">
-                  <a href="javascript: flagReview()" id = "review-flag-3"><span class="fa fa-flag-o"/></a>
-                </div>
-              </div>
-              haokan
-            </div>
-          </div>
-
-          <div class="media mb-4">
-            <!--<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-            <div class="media-body" id = "review-4">
-              <div class="row">
-                <div class="col-lg-7">
-                  <h5 class="mt-0"><a href="javascript: showReviewerDetails()" id = "review-name-4">Reviewer Name One</a></h5>
-                </div>
-                <div class="col-lg-3">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <span class="fa fa-thumbs-o-up" style="font-size: 1.2em;" onclick="thumbUp()" />
-                      <span style="font-size: 0.8em;"  id = "review-thumbup-4">12</span>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-2">
-                  <a href="javascript: flagReview()" id = "review-flag-4"><span class="fa fa-flag-o"/></a>
-                </div>
-              </div>
-              haokan
-            </div>
-          </div>
-
-          <div class="media mb-4">
-            <!--<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-            <div class="media-body" id = "review-5">
-              <div class="row">
-                <div class="col-lg-7">
-                  <h5 class="mt-0"><a href="javascript: showReviewerDetails()" id = "review-name-5">Reviewer Name One</a></h5>
-                </div>
-                <div class="col-lg-3">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <span class="fa fa-thumbs-o-up" style="font-size: 1.2em;" onclick="thumbUp()" />
-                      <span style="font-size: 0.8em;"  id = "review-thumbup-5">12</span>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-2">
-                  <a href="javascript: flagReview()" id = "review-flag-5"><span class="fa fa-flag-o"/></a>
-                </div>
-              </div>
-              haokan
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-5">
-            </div>
-            <div class="col-lg-4">
-              <a href="javascript: selectPage(1)"><span>1</span></a>
-              <a href="javascript: selectPage(2)"><span>2</span></a>
-              <a href="javascript: selectPage(3)"><span>3</span></a>
-              <a href="javascript: selectPage(-1)"><span>...</span></a>
-            </div>
-            <div class="col-lg-3">
-            </div>
-          </div>
+          <ul class="pagination justify-content-center" id = "page-area" >
+          </ul>
 
           <!-- Comments Form -->
           <div class="card my-4">
@@ -353,7 +483,7 @@
                       <a href="profile.html">My Profile</a>
                     </li>
                     <li>
-                      <a href="index.html">Recommand</a>
+                      <a href="recommend.html">Recommand</a>
                     </li>
                   </ul>
                 </div>
@@ -362,22 +492,12 @@
                     <li>
                       <a href="inbox.html">Inbox</a>
                     </li>
-                    <li>
-                      <a href="history.html">My History</a>
-                    </li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Side Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
-            <div class="card-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-            </div>
-          </div>
 
         </div>
 
@@ -398,6 +518,13 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/bookReview.js"></script>
+    <script type ="text/javascript">
+        window.onload=function(){
+         loadPage();
+        };
+    </script>
 
   </body>
 

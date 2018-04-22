@@ -22,12 +22,10 @@ function closeRegisterModal() {
 
 function cancelLoginClicked() {
     closeLoginModal()
-    window.location.replace("index.html");
 }
 
 function cancelRegisterClicked() {
     closeRegisterModal()
-    window.location.replace("index.html");
 }
 
 function loginLogoutClicked() {
@@ -59,7 +57,7 @@ function doLoginRequest(email, password) {
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             
-
+            console.log(xmlHttp.responseText);
             var responseString = JSON.parse(xmlHttp.responseText);
             var responseUserInfo = JSON.parse(responseString)
             
@@ -80,7 +78,7 @@ function doLoginRequest(email, password) {
             document.getElementById('loginModal').style.display = "none";
             document.getElementById('registerModal').style.display = "none";
             document.getElementById("loginLogout").innerHTML = "Logout"
-            window.location.replace("index.html");
+            window.location.reload();
         }
     };
     xmlHttp.open("POST", loginURL, true);
@@ -130,18 +128,5 @@ function registerClicked() {
     };
     xmlHttp.open("POST", registerURL, true);
     xmlHttp.send(JSON.stringify(newUser));    
-}
-
-function myProfileClicked() {
-    if (sessionStorage.user == null) {
-        showLoginModal()
-    }
-    else {
-        window.location.replace("profile.html");
-    }
-}
-
-function searchBook() {
-	alert("Search book clicked!")
 }
 
